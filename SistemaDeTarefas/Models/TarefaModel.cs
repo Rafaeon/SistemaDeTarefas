@@ -11,5 +11,7 @@ namespace SistemaDeTarefas.Models
         public string? Descricao { get; set; }
 
         public StatusTarefa Status { get; set; }
+        public object UsuarioId { get; internal set; }
+        public object Usuario { get; internal set; }
     }
 }

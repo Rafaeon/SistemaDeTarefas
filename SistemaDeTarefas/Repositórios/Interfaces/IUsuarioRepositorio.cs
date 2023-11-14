@@ -12,4 +12,3 @@ namespace SistemaDeTarefas.Repositórios.Interfaces
         Task<bool> Apagar(int id);
     }
 }
-    
