@@ -1,4 +1,5 @@
 ﻿using SistemaDeTarefas.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaDeTarefas.Models
 {
@@ -11,7 +12,8 @@ namespace SistemaDeTarefas.Models
         public string? Descricao { get; set; }
 
         public StatusTarefa Status { get; set; }
-        public object UsuarioId { get; internal set; }
-        public object Usuario { get; internal set; }
+        public int? UsuarioId { get; internal set; }
+
+        public virtual UsuarioModel? Usuario { get; set; }
     }
 }
