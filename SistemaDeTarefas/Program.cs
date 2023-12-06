@@ -1,12 +1,16 @@
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
 using SistemaDeTarefas.Data;
 using SistemaDeTarefas.Repositórios;
 using SistemaDeTarefas.Repositórios.Interfaces;
+using System.Diagnostics.Metrics;
 
 namespace SistemaDeTarefas
 {
     public class Program
     {
+        
+
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -19,11 +23,11 @@ namespace SistemaDeTarefas
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddEndpointsApiExplorer()
-                .AddDbContext<SistemaTarefasDBContex>(
+            .AddDbContext<SistemaTarefasDBContex>(
                     options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
                 );
 
-            //builder.Services.AddScoped<IUsuarioRepositorio, IUsuarioRepositorio>();
+            builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
 
             var app = builder.Build();

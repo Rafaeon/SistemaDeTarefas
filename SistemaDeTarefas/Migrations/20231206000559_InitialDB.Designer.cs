@@ -12,7 +12,7 @@ using SistemaDeTarefas.Data;
 namespace SistemaDeTarefas.Migrations
 {
     [DbContext(typeof(SistemaTarefasDBContex))]
-    [Migration("20231117012716_InitialDB")]
+    [Migration("20231206000559_InitialDB")]
     partial class InitialDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,19 +26,16 @@ namespace SistemaDeTarefas.Migrations
 
             modelBuilder.Entity("SistemaDeTarefas.Models.TarefaModel", b =>
                 {
-                    b.Property<int?>("UsuarioId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("UsuarioId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Descricao")
                         .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -48,12 +45,12 @@ namespace SistemaDeTarefas.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsuarioId1")
+                    b.Property<int?>("UsuarioId")
                         .HasColumnType("int");
 
-                    b.HasKey("UsuarioId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("UsuarioId1");
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Tarefas");
                 });
@@ -85,9 +82,7 @@ namespace SistemaDeTarefas.Migrations
                 {
                     b.HasOne("SistemaDeTarefas.Models.UsuarioModel", "Usuario")
                         .WithMany()
-                        .HasForeignKey("UsuarioId1")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UsuarioId");
 
                     b.Navigation("Usuario");
                 });

@@ -9,7 +9,7 @@ namespace SistemaDeTarefas.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Usuarios",
+                name: "Usuarios6",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -19,45 +19,43 @@ namespace SistemaDeTarefas.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                    table.PrimaryKey("PK_Usuarios6", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tarefas",
+                name: "Tarefas6",
                 columns: table => new
                 {
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Id = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Descricao = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    UsuarioId1 = table.Column<int>(type: "int", nullable: false)
+                    UsuarioId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tarefas", x => x.UsuarioId);
+                    table.PrimaryKey("PK_Tarefas6", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tarefas_Usuarios_UsuarioId1",
-                        column: x => x.UsuarioId1,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Tarefas_Usuarios_UsuarioId6",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuarios6",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tarefas_UsuarioId1",
-                table: "Tarefas",
-                column: "UsuarioId1");
+                name: "IX_Tarefas_UsuarioId6",
+                table: "Tarefas6",
+                column: "UsuarioId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Tarefas");
+                name: "Tarefas6");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
+                name: "Usuarios6");
         }
     }
 }

@@ -31,9 +31,6 @@ namespace SistemaDeTarefas.Data
             
             modelBuilder.ApplyConfiguration(new UsuarioMap());
             modelBuilder.ApplyConfiguration(new TarefaMap());
-            modelBuilder.Entity<TarefaModel>().Ignore(e => e.UsuarioId); // ignore incluido
-            modelBuilder.Entity<TarefaModel>().HasKey(e => e.UsuarioId); // haskey incluido
-
 
             base.OnModelCreating(modelBuilder);
         }
